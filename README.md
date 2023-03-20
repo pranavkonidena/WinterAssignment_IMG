@@ -28,5 +28,7 @@ On clicking Join individually, the user is directly redirected to the quizpage a
 On clicking create a team, a user has to enter the quiz-room in which he wants to participate and a corresponding team code is generated which is shared to other members of the team.
 On clicking join a team, a user has to enter a valid team id and they are redirected to the waiting page. When the leader of a team(Team creator) clicks Go to quiz, the quiz starts.
 
+The demo of the Web App can be found at https://drive.google.com/file/d/1l_VU2I_qG_IZ_nq-riZvJ9D4Eazp63c5/view?usp=sharing
+
 
 Made with ♥️ by Team I don't Know
