@@ -29,14 +29,9 @@ var io = require("socket.io")(http);
 
 
 
-// const server = app.listen(3000);
+
 http.listen(3000);
 
-// server.on("upgrade" , (request , socket , head) => {
-//     wsServer.handleUpgrade(request , socket, head, socket => {
-//         wsServer.emit('connection' , socket , request);
-//     })
-// })
 
 
 
@@ -47,7 +42,7 @@ var red_room = "red";
 
 app.set('view engine', 'ejs'); // Register View Engine
 
-// app.listen(3000);
+
 
 
 
@@ -191,7 +186,7 @@ app.post("/login" , async (req,res) => {
                 res.redirect('/')
             }
             
-            // res.render('quizpage' , {user: req.body.username});
+           
         }
         else{
             res.render('login',{message:"Incorrect credentials"})
@@ -200,7 +195,7 @@ app.post("/login" , async (req,res) => {
     }
 
         else{
-            // res.render('login',{message:""})
+           
             res.render('login',{message:"User does not exists"})
         }
     })
@@ -218,7 +213,7 @@ app.post("/quiz-details" , async (req,res) => {
         num : {"length" : req.body.num,"questions":[],"answers":[]}
     }
     quiz = quiz_details;
-    // await rooms.insertMany([quizdetails])
+   
     res.render("quiz-create" , {params : quizdetails});
 })
 
@@ -252,7 +247,7 @@ app.post("/quizcreate",async (req,res)=>{
     }
    
     
-    //insert into database here ..> Pranav
+   
 
     await rooms.insertMany([quizdetails]);
     res.redirect('/');
@@ -274,9 +269,7 @@ app.get("/team/:id",async (req,res)=>{
                 
                    
                 }
-                // res.redirect(`/room/${check.roomcode}`)
-                // res.send(`Welcome ${session.userid} to the quiz`)
-               
+            
             }
 
 )
@@ -301,9 +294,6 @@ app.get("/room/:id",async (req,res)=>{
                 res.redirect('/login')
 
                 }
-                
-                // res.redirect(`/room/${check.roomcode}`) 
-                // res.send(`Welcome ${session.userid} to the quiz`)
                
             }
 
@@ -317,8 +307,7 @@ app.post("/join-quiz",async (req,res)=>{
         {
             const check = await rooms.findOne({roomcode:req.body.room_id})
             room_code = req.body.room_id;
-            // console.log(check);
-            // console.log(room_code +" is your room.");
+           
             if(check == null){
                 res.send('Incorrect room id')
                 
@@ -353,11 +342,7 @@ app.post("/join-quiz",async (req,res)=>{
                     if(!check1.users.includes(session.userid)){
                     check1.users.push(session.userid);}
                         var index;
-                    //io.on('connection' , function(socket) {
-                        
-                        // Have to make a room so that all players are redirected to quiz site when leader clicks so!
-                        
-                    //})
+                 
                 
                 
                 await teams.insertMany([check1])
@@ -368,13 +353,9 @@ app.post("/join-quiz",async (req,res)=>{
 
                 var team_leader = check1.users[0];
 
-                // socket.join(check.team_id)
-                // socket.join(session.userid)
-
-
-                // res.render('teamspage' , {team: check1.users , team_leader:team_leader , user: session.userid , room : check1.roomcode});
+                
                 res.redirect(`/waitingroom/${check1.roomcode}`)
-                // res.redirect(`/quiz/${check.roomcode}`)            
+                      
 
                 
             }
@@ -433,22 +414,7 @@ app.get("/waitingroom/:id",async (req,res)=>{
             for(const j of online_users){
                 online_leaders.push(j[0]);
             }
-            
-            // io.on("connection", (socket) => {
-                
-            //     socket.join(req.params.id);
-            //     socket.join(new_user);
-            //     socket.join(new_team);
-               
-
-            //     console.log(new_team + " " + new_user)
-
-                
-            //     // socket.to("quiz-room").emit("new_user",{new_user_team : new_team, new_user_joined:session.userid})
-            //     socket.to(req.params.id).emit("new_user",{new_user_team : new_team, new_user_joined:session.userid})
-            //     // console.log("i worked")
-
-            //   });
+     
               
             res.render('teamspage',{teams_online : online_teams,users_online:online_users,logged_in:session.userid , room: req.params.id , leaders: online_leaders , teamname : team_current_code , prevteams : arr_checker})
             
@@ -456,38 +422,9 @@ app.get("/waitingroom/:id",async (req,res)=>{
 
 
 
-// let msg_final;
+
 let quiz_details;
-// app.get('/quizpage:id' , async (req, res) => {
-//     const check = await rooms.findOne({roomcode: req.params.id})
-//     res.render('quizpage' , {check1: check , user: session.userid});
-    
 
-    
-//     io.on('connection' , function(socket){
-
-//         socket.on("start" , (msg) =>{
-//             msg_final+=msg.msg
-//             console.log("MSG IS: " +msg.msg)
-                
-//             })
-        
-        
-//        if(msg_final == "11"){
-//         //Not working, found a bit of a flaw in the logic.. will try tom.. rest the things that are working are that the leader gets the start quiz button.. 
-//         // Team code - e889 , leader - god!
-//        }
-       
-
-       
-
-        
-//     })
-    
-    
-    
-// }
-// )
 
 var room_current_code;
 var team_game_start =0;
@@ -495,7 +432,7 @@ var team_game_start =0;
 app.get("/quiz/:id",async (req,res)=>{
     const check = await rooms.findOne({roomcode:req.params.id})
 
-    // console.log(check)
+ 
     if(check==null){
         res.send("incorrect room id")
     }
@@ -544,7 +481,7 @@ let scores = [];
 let msg = "Players in the quiz right now: ";
 var thumbs_up = 0
 
-// let users = "The players currently are: ";
+
 io.on('connection' , function(socket){
     if(session.userid){
         current_users.add(session.userid);
@@ -559,17 +496,7 @@ io.on('connection' , function(socket){
         }
         
 
-       
-        
-    //     if(socket.rooms.has(room_code)){
-    //         currentusers[room_code] += session.userid + " ";
-    //         console.log(currentusers[room_code]);
-
-    //          currentusers[room_code] =  currentusers[room_code].slice(9);
-    // }
-
-    //         io.to(room_code).emit('testing' , currentusers[room_code]);
-
+  
        
         
     }
@@ -578,39 +505,9 @@ io.on('connection' , function(socket){
     if(team_play_enabled){
 
         
-    //    function get_uniq_rand_int () {
-    //     var rand_nums = []
-    //     for(const j of online_users){
-    //         let num = Math.random();
-    //         num = num * j.length;
-    //         num = Math.floor(num);
-    //         prev_rand_int.push(num);
-    //         if(!prev_rand_int.includes(num)){
-    //             rand_nums.push(num);
-    //             return rand_nums;
-    //         }
-    //         else{
-    //             get_uniq_rand_int();
-    //         }
-    //     }
-
-    //    }
-                // socket.join("quiz-room");
-                // socket.on("req" , (data) => {
-                //     var random_num = [];
-                //     random_num = get_uniq_rand_int();
-                //     let user_target_0 = online_users[0][random_num[0]];
-                //     let user_target_1 = online_users[0][random_num[1]];
-
-                //     socket.to(user_target_0).emit("remove_hide");
-                //     socket.to(user_target_1).emit("remove_hide");
-
-                // })
                 
                 socket.join(room_current_code);
-                // socket.join(new_user);
-                // socket.join("quiz-room");
-                // socket.join(new_team);
+               
                 join_team_memebers();
 
                 if(online_leaders.includes(session.userid)){
@@ -618,72 +515,31 @@ io.on('connection' , function(socket){
                     
                 }
 
-                // for(const item of online_users){
-                //     if(item.length > 1){
-                //         join_leaders();
-                //     }
-                // }
-                // if(online_leaders.includes(session.userid)){
-                //     socket.emit("leader" , {data: "MSG TO LEADER"})
-                // }
-               
-
+                
                 
                 console.log(team_current_code + " " + new_user)
 
                 
-                // socket.to("quiz-room").emit("new_user",{new_user_team : new_team, new_user_joined:session.userid})
+                
                 socket.to(room_current_code).emit("new_user",{new_user_team : team_current_code, new_user_joined:session.userid})
-                // console.log("i worked")
+             
 
 
                io.to(online_leaders[0]).emit("unhide");
                io.to(online_leaders[2]).emit('unhide');
 
 
-                // socket.on("thumbs_up",(data)=>{
-                //     thumbs_up++;
-                //     if(thumbs_up==2){
-                //         redirect();
-                //     }
-                // })
-               
+             
                 socket.on('thumbs_up' , () => {
                     io.to(team_current_code).emit("gotoquiz");
                     console.log("I EMMITTED THE EVENT");
                 })
-                // function redirect(){
-                //     socket.to(room_current_code).emit("redirect",{left_user:session.userid});
-
-                // }
-
-                // if(team_game_start){
-                //     for(let i=0;i<online_teams;i++){
-                //         for(let j=0;j<online_users[i].length;j++){
-                //             socket.to(online_teams[i]).to(online_users[i][j]).emit(online_users[i][j])
-                //         }
-                    
-                //     }
-                // }
-
-
-
+            
                
 
                 
 
-                
-
-                // socket.on("thumbs_up1" , (data) => {
-                //     thumbs_up++;
-                //     if(thumbs_up==2){
-                //         socket.to("quiz-room").emit("redirect");
-                //     }
-                // })
-
-
-    
-
+              
               
     }
     async function join_team_memebers(){
@@ -708,16 +564,13 @@ io.on('connection' , function(socket){
         if(session.userid){
             console.log(session.userid + " is disconnected.");           
             current_users.delete(session.userid);
-            // console.log(current_users);
+           
         }
-        // socket.to("quiz-room").emit("del_user",{user_left:session.userid}) 
+        
 
     })
  
 
-    
-    // Real time team players starting
-    // Players event for submit button in temam
 
 })
 
@@ -730,9 +583,6 @@ app.post('/score' , async (req,res) => {
 })
 
 
-
-// Users display, leaders creation , css +> Tasks to do.  Css is done! 
-// Idea is to the set the users[0] guy or gal to be the leader and then he / she will see the submit button!
 
 
 
