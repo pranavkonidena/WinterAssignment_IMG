@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz and More</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather&family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles(join-quiz).css">
+    
+
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Quiz and More</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link instructions" href="/instructions">Instructions</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a href="/" aria-current="page"><button type = "button" class = "logout-button btn-md nav-link">Logout</button></a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+
+    
+
+
+    <div class="carousel">
+        <center><button class="btn-lg btn btn-outline-primary join-ind b" onclick="f1()" >Join
+                    individually</button></center>
+        <center><button class="btn btn-lg btn-outline-primary create-team b" onclick="f2()">Create a team</button></center>
+        <center><button class="btn btn-lg btn-outline-primary join-team b" onclick="f3()">Join a team</button></center>
+
+    </div>
+    <form action="/join-quiz" method="post" id="fn1">
+        <div class="container-fluid">
+        <label class = "text-rmid">Enter your room id</label>
+        <input type="text" name="room_id">
+        <input type="submit" class = "btn-outline-primary btn">
+        </div>
+    </form>
+    <form action="/join-quiz" method="post" id="fn2">
+        <div class="container-fluid">
+        <p class = "text-tmid">Your unique team id : <%= teamid %> </p>
+        <p class = "text-tmid">Invite players to your team using the link http://localhost:3000/team/<%= teamid %> </p>
+        <label class = "text-a z">Enter your room id</label>
+        <input type="text" class = "e" name="room_id">
+        <label class = "text-a">Your team id is</label>
+        <input type="text" name="team_id" value="<%= teamid %>" readonly="readonly">
+
+        <input type="submit" class = 'btn btn-outline-primary'>
+        </div>
+    </form>
+    <form action="/join-quiz" method="post" id="fn3">
+        <div class="container-fluid">
+        <label class = "text-tmjn">Enter your unique Team id</label>
+        <input type="text" name="team_id" class = "q">
+        <input type="submit" class = "btn btn-outline-primary">
+        <p class = "join-text">Join the action live on  http://localhost:3000/team/{teamid} </p>
+        </div>
+
+
+    <script>
+        var count =0;
+        function f1(){
+            if(count ==0){
+            console.log("fired");
+            document.getElementById('fn1').style.display="inline";
+            count = 1
+        }else{
+            alert("You can select only one option")
+        }
+    }
+        function f2(){
+            if(count ==0){
+            console.log("fired");
+            document.getElementById('fn2').style.display="inline";
+            count = 1
+        }else{
+            alert("You can select only one option")
+        }
+        }
+        function f3(){
+            if(count ==0){
+            console.log("fired");
+            document.getElementById('fn3').style.display="inline";
+            count = 1
+        }else{
+            alert("You can select only one option")
+        }
+        }
+    </script>
+</body>
+
+</html>

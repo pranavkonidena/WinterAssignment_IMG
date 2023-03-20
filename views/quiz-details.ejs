@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Quiz Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather&family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles(quizcreation).css">
+
+</head>
+<body>
+    <%- include('./partials/nav-nf.ejs') %>
+    <h1 class = "roomid">Your Quiz room Id is <strong><%= roomid %></strong></h1>
+
+    <form action="/quiz-details" method = "post">
+        <label for="" class = "number-qns f">Enter no. of true false questions</label>
+        <input type="text" name = "tf" class = "ph1">
+        <br>
+        <label for="" class = "number-qns s">Enter no. of SCQ's</label>
+        <input type="text" name = "scq" class = "ph2">
+        <br>
+        <label for="" class = "number-qns t">Enter no. of numeric questions</label>
+        <input type="text" name = "num" class = "ph3">
+        <br>
+        <input type="submit" class = "btn btn-md btn-outline-primary">
+
+    </form>
+
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <%- include('./partials/nav-nf.ejs') %>
+
+
+    <% for(let i = 0; i <check1.tf.questions.length ; i++) {%>
+        <h3>Q<%=i+1%>.<%= check1.tf.questions[i]%></h3>
+        <form action="score" method = "post">
+            <label for="">True</label>
+            <input type="radio">
+            <label for=""> False</label>
+            <input type="radio">
+            <input type="submit">
+            
+        </form>
+        
+        <br>
+    
+        <% } %>
+    
+    <% for(let i = 0; i <check1.scq.questions.length ; i++) {%>
+        <h3>Q<%=i+ check1.tf.questions.length + 1 %>.<%= check1.scq.questions[i].text%></h3>
+        <p>A. <%= check1.scq.questions[i].options[0][i] %></p>
+        <p>B. <%= check1.scq.questions[i].options[1][i] %></p>
+        <p>C. <%= check1.scq.questions[i].options[2][i] %></p>
+        <p>D. <%= check1.scq.questions[i].options[3][i] %></p>
+
+        <form action="score" method = "post">
+            <label for="">A</label>
+            <input type="radio">
+            <label for="">B</label>
+            <input type="radio">
+            <label for="">C</label>
+            <input type="radio">
+            <label for="">D</label>
+            <input type="radio">
+            <input type="submit">
+            
+        </form>
+        
+
+
+        <% } %>
+
+        
+    
+    <% for(let i = 0; i <check1.num.questions.length ; i++) {%>
+        <h3>Q<%=i+ check1.scq.questions.length + 1 + check1.tf.questions.length %>.<%= check1.num.questions[i]%></h3>
+
+        <form action="score" method = "post">
+            <label for="">Enter your Answer</label>
+            <input type="text">
+            <input type="submit">
+            
+        </form>
+        
+
+    
+        <% } %>
+    
+   
+
+       
+    <script>
+        var socket = io();
+        socket.on('connection' , (quiz_players) =>{
+            console.log(quiz_players);
+        })
+    </script>
+
+    
+</body>
+</html>

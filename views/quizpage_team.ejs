@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizPage</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <%- include('./partials/nav-nf.ejs') %>
+        <h1>Hello team <%= team_code %></h1>
+            <h2>Your current score is </h2>
+        <p id="current"></p>
+        </h1>
+       
+
+
+
+        <% for(let i=0; i <check1.tf.questions.length ; i++) {%>
+            <h3>Q<%=i+1%>.<%= check1.tf.questions[i]%>
+            </h3>
+            <!-- <form action="score" method = "post" id = "answers"> -->
+            <label for="">True</label>
+
+            <label for=""> False</label>
+
+            <input type="radio" id="option_t<%= i %>" class = "tf-true btns" name = "radio-button" value="True" >
+            <input type="radio" id="option_f<%= i %>" class = "tf-false btns" name = "radio-button" value="False" />
+
+
+            <input type="text" class = "ans_given_tf" value = "" hidden = "hidden">
+            <button type="submit" class="bt bt-tf" hidden = "hidden" id = "check<%=i%>" onclick="tf<%= i %>()">Check</button>
+
+            <!-- </form> -->
+
+            <br>
+
+            <% } %>
+
+                <% for(let i=0; i <check1.scq.questions.length ; i++) {%>
+                    <h3>Q<%=i+ check1.tf.questions.length + 1 %>.<%= check1.scq.questions[i].text %>
+                    </h3>
+                    <p>A. <%= check1.scq.questions[i].options[0][i] %>
+                    </p>
+                    <p>B. <%= check1.scq.questions[i].options[1][i] %>
+                    </p>
+                    <p>C. <%= check1.scq.questions[i].options[2][i] %>
+                    </p>
+                    <p>D. <%= check1.scq.questions[i].options[3][i] %>
+                    </p>
+
+                    <!-- <form action="score" method = "post" id = "answers"> -->
+                    <label for="">A</label>
+                    <input type="radio" id="option2_<%=i%>_A" class = "scq-btn" value="A">
+                    <label for="">B</label>
+                    <input type="radio" id="option2_<%=i%>_B" class = "scq-btn" value="B">
+
+                    <label for="">C</label>
+                    <input type="radio" id="option2_<%=i%>_C" class = "scq-btn" value="C">
+
+                    <label for="">D</label>
+                    <input type="radio" id="option2_<%=i%>_D" class = "scq-btn" value="D">
+
+                    <button type="submit" class="bt bt-scq" hidden = "hidden" id = "check-scq-<%=i%>" onclick="scq<%= i %>()">Check</button>
+
+
+                    <!-- </form> -->
+
+
+
+                    <% } %>
+
+
+
+                        <% for(let i=0; i <check1.num.questions.length ; i++) {%>
+                            <h3>Q<%=i+ check1.scq.questions.length + 1 + check1.tf.questions.length %>.<%=
+                                        check1.num.questions[i]%>
+                            </h3>
+
+                            <!-- <form action="/score" method = "post" id = "answers"> -->
+                            <label for="">Enter your Answer</label>
+                            <input type="text" class="num-ans" id="option3<%= i %>">
+                            <button type="submit" hidden = "hidden" class="bt bt-num" id = "check-num-<%=i%>" onclick="num<%= i %>()">Check</button>
+
+                            <!-- <input type="text" value = "<%= check1.num.answers[0][i] %>" class = "a" hidden = "hidden"> -->
+                            <!-- </form> -->
+
+                            <% } %>
+
+
+
+                                <!-- <button type="submit" class = "bt" onclick="scq()">Check</button> -->
+
+
+    <a href="/leaderboard"><button>Go to LeaderBoard</button></a>
+
+
+
+    <script>
+        var socket = io();
+            console.log(document.getElementById("option2_0_A").value)
+
+
+
+        
+
+        
+        var score = 0;
+        document.getElementById("current").innerHTML = score;
+        
+       
+        // FOr true false questions!
+            
+        <% for(let i = 0; i < check1.tf.questions.length; i ++) { %>
+            function tf_check<%=i%>(){
+                let radio_button_true = document.getElementById("option_t<%= i %>");
+                let radio_button_false = document.getElementById("option_f<%= i %>");
+                console.log(radio_button_false);
+
+               radio_button_true.addEventListener('click' , ()=> {
+                
+                if("<%=check1.tf.answers[i]%>" == "True"){
+                    score+=1;
+                    socket.emit("score-team",{team: "<%=team_code%>" , score : score})
+                    
+                    
+                }
+               })
+
+               radio_button_false.addEventListener('click' , ()=>{
+                
+                if("<%=check1.tf.answers[i]%>" == "False"){
+                    score+=1;
+                    socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                }
+               })
+                
+            }
+            tf_check<%=i%>();
+
+            function tf<%=i%>(){
+
+                let button = document.getElementById("check<%=i%>");
+                button.setAttribute('hidden' , 'hidden');
+                
+
+                console.log("FRED");
+                document.getElementById("current").innerHTML = score;
+                
+                
+                
+                
+            }
+
+        
+        <% } %>
+
+        // For SCQ Questions
+
+        <% for(let i = 0; i < check1.scq.questions.length; i ++) { %>
+
+            function scq_check<%=i%>(){
+                let a_option = document.getElementById("option2_<%=i%>_A");
+                let b_option = document.getElementById("option2_<%=i%>_B");
+                let c_option = document.getElementById("option2_<%=i%>_C");
+                let d_option = document.getElementById("option2_<%=i%>_D");
+                console.log("a option" + a_option.length);
+
+                a_option.addEventListener('click' , ()=>{
+                    
+                    if("<%=check1.scq.answers[0][i]%>" == "A"){
+                        score+=1;
+                        socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                    }
+                })
+
+                b_option.addEventListener('click' , ()=>{
+                    
+                    if("<%=check1.scq.answers[i]%>" == "B"){
+                        score+=1;
+                        socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                    }
+                })
+
+                c_option.addEventListener('click' , ()=>{
+                    
+                    if("<%=check1.scq.answers[i]%>" == "C"){
+                        score+=1;
+                        socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                    }
+                })
+
+                d_option.addEventListener('click' , ()=>{
+                    
+                    if("<%=check1.scq.answers[i]%>" == "D"){
+                        score+=1;
+                        socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                    }
+                })
+
+                
+                
+            }
+            scq_check<%=i%>();
+
+
+            function scq<%=i%>(){
+                let button_check = document.getElementById("check-scq-<%=i%>");
+                button_check.setAttribute("hidden" , "hidden");
+
+                document.getElementById("current").innerHTML = score;
+                socket.emit("score-team", { team: "<%= team_code%>", score: score })
+
+            }
+
+     <%   }   %>
+
+
+    
+     // For numerical questions
+
+     <% for (let i = 0; i < check1.num.questions.length; i++) { %>
+                                        function num<%= i %> (){
+                                            
+                                            let button = document.getElementById("check-num-<%=i%>");
+                                            button.setAttribute('hidden' , 'hidden');
+
+
+                                            if (document.getElementById("option3<%= i %>").value === "<%= check1.num.answers[0][i] %>") {
+                                                score += 1;
+                                                document.getElementById("current").innerHTML = score;
+                                                socket.emit("score-team", {team : "<%=team_code%>" , score: score })
+                                            }
+                                        }
+        <% } %>
+
+
+        socket.on('unhide' , (data) => {
+            var tf = document.getElementsByClassName("bt-tf")
+            var scq = document.getElementsByClassName("bt-scq")
+            var num = document.getElementsByClassName("bt-num")
+            for(const item of tf){
+                item.removeAttribute('hidden');
+            }
+            for(const item of scq){
+                item.removeAttribute('hidden');
+            }
+            for(const item of num){
+                item.removeAttribute('hidden');
+            }
+        })
+                                        
+                            
+
+    </script>
+
+
+</body>
+
+</html>

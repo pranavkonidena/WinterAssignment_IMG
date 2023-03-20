@@ -1,0 +1,78 @@
+.logout-button {
+    border-style: none;
+}
+
+.join-ind{
+    display: inline-block;
+    position: relative;
+    right: 15rem;
+    margin-right: 2rem;
+    margin-left: 3rem;
+    
+}
+
+.create-team {
+    display: inline-block;
+    position: relative;
+    right: 4rem;
+    bottom: 2.9rem;
+    
+    margin-left: 3rem;
+
+}
+
+.join-team {
+    position: relative;
+    bottom: 5.9rem;
+    left: 8.5rem;
+    margin-left: 4rem;
+    margin-right: 3rem;
+}
+
+.carousel {
+    padding-top: 13rem;
+}
+
+.b {
+    margin-left: 7rem;
+}
+
+.text-rmid {
+    color: black;
+    padding-left: 25rem;
+    padding-right: 0.5rem;
+}
+
+.text-tmid {
+    color: black;
+    padding-left: 25rem;
+}
+
+.text-a {
+    color: black;
+    padding-top: 3rem;
+}
+
+.z {
+    padding-left: 15rem;
+}
+
+.e {
+    margin-right: 3rem;
+}
+
+.text-tmjn {
+    color: black;
+    padding-left: 23.5rem;
+    padding-bottom: 3rem;
+    padding-right: 1rem;
+}
+
+.join-text {
+    color: black;
+    padding-left: 24rem;
+}
+
+.q {
+    margin-right: 1rem;
+}

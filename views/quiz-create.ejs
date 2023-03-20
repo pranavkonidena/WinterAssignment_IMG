@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather&family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles(quizcreation).css">
+
+</head>
+<body>
+   
+    <%- include('./partials/nav-nf.ejs') %>
+    <form action="/quizcreate" method="post">
+        <h1 class = "headers">
+            SCQ
+        </h1>
+       <% for(let i=0;i<params.scq.length;i++){ %>
+            <label for="" class = "question-text-scq a">Enter question</label>
+            <input type="text" name = "SCQ<%= i %>" class = "space-frwriting-qnscq">
+            <br>
+            <label for="" class = "option-text-scq" >Enter option A</label>
+            <input type="text" name = "0" class = "space-frwriting-ansscq">
+            <br>
+            <label for="" class = "option-text-scq">Enter option B</label>
+            <input type="text"  name = "1" class = "space-frwriting-ansscq">
+            <br>
+            
+            <label for="" class = "option-text-scq">Enter option C</label>
+            <input type="text" name = "2" class = "space-frwriting-ansscq">
+            <br>
+            
+            <label for="" class = "option-text-scq">Enter option D</label>
+            <input type="text"  name = "3" class = "space-frwriting-ansscq">
+            <br>
+            
+            <label for="" class = "answer-text-scq">Answer</label>
+            <input type="text" name = "Answer" class = "space-frwriting-ansscq x">
+        <br>
+    <% } %>
+        <h1 class = "headers">T/F</h1>
+       <% for(let i=0;i<params.tf.length;i++){ %>
+        <label class = "question-text-tf a">Enter question</label>
+        
+        <input type="text" name = "TF<%= i %>" class = "space-frwriting-qntf">
+            <br>
+            <label class = "option-text-tf">True</label>
+        
+        <input type="radio" value="True" name="T" class = "rb-1" >
+        <br>
+        <label class = "option-text-tf y">False</label>
+        
+        <input type="radio" value="False" name="F" class = "rb-2">
+        <br>
+    <% } %>
+        <h1 class = "headers">Numerical</h1>
+    <% for(let i=0;i<params.num.length;i++){ %>
+        <label for="" class = "question-text-num a">Enter question</label>
+        
+        <input type="text" name = "NUM<%= i %>" class = "space-frwriting-qnnum">
+        <br>
+        <label for="" class = "answer-text-num">Enter the answer</label>
+        <input type="text" name = "value" class = "space-frwriting-ansnum">
+        <br>
+        <% } %>
+
+    
+            <input type="submit" class = "btn btn-outline-primary c">
+        </form>
+    
+</body>
+</html>

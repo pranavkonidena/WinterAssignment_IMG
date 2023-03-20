@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team-members</title>
+    <link rel="stylesheet" href="/styles1.css">
+    <script src = "/socket.io/socket.io.js"></script>
+</head>
+<center><body>
+    <%- include('./partials/nav-nf.ejs') %>
+    <center>
+
+        <h1 id = "a" >Waiting room</h1>
+
+        <p> 
+            <% for( let index = 0; index < teams_online.length; index++ ) { %>
+                <br>
+                Team:
+                <div id="<%= teams_online[index] %>">
+                    
+            <h2><%= teams_online[index] %></h2>
+            Players:
+                <% for(let new_index =0;new_index<users_online[index].length;new_index++){ %>
+                  <p id="<%= users_online[index][new_index] %>"><%= users_online[index][new_index] %></p>       
+                </div>
+                <button class = "btn btn-outline-primary"id = "btn_<%=users_online[index][0]%>" hidden = "hidden" onclick = "fn_<%= index %>()">Go to Quiz</button>
+            <% } }%></p>
+        
+    
+    </center>
+   
+    
+    
+
+   
+ 
+
+    
+<script>
+    
+    var socket = io()
+        socket.on("new_user",(data)=>{
+            var element = document.getElementById(data.new_user_team);
+            
+            var tag = document.createElement("p");
+            tag.id = data.new_user_joined;
+            var text = document.createTextNode(data.new_user_joined);
+            tag.appendChild(text);
+            console.log(data.new_user_joined + " " +  data.new_user_team)
+            
+            if(element==null){
+                var new_element = document.createElement("div");
+                var new_heading = document.createElement("h2");
+                var heading_text = document.createTextNode(data.new_user_team);
+            new_heading.appendChild(heading_text);
+                new_element.id = data.new_user_team
+                new_element.appendChild(new_heading);
+                new_element.appendChild(tag);
+                document.body.appendChild(new_element)
+            }else{
+            element.appendChild(tag);
+        }
+
+        });
+
+
+        socket.on("del_user",(data)=>{
+            console.log(document.getElementById(data.user_left));
+            document.getElementById(data.user_left).remove();
+        })
+
+        // socket.on("leader" , (data) => {
+        //     alert(data);
+
+        // })
+
+        socket.on("Leader" , (data)=> {
+            console.log("DATA");
+            var button = document.getElementById("btn_"+data.name);
+
+            button.removeAttribute('hidden');
+
+        })
+
+        
+        
+
+       
+        <% if (users_online.length == 2) { %>
+        function fn_1(){
+            window.location.assign("/quiz/<%=room%>");
+            
+            document.getElementById("btn_"+"<%=users_online[1][0]%>").style.visibility = "hidden";
+            
+            
+            console.log("SENT");
+            
+            }
+
+            <% } %>
+        
+
+        function fn_0(){
+            window.location.assign("/quiz/<%=room%>");
+            document.getElementById("btn_"+"<%=users_online[0][0]%>").style.visibility = "hidden";
+            setTimeout(()=> {
+                socket.emit("thumbs_up",{user: "<%=logged_in%>"})
+            } , 1000);
+            console.log("SENT");
+
+}
+
+        // socket.on("redirect" , (data) =>{
+        //     socket.to(data.left_user).emit("redirect_once_more")
+        //     window.location.assign("/quiz/<%=room%>");
+
+        // })
+        // socket.on("redirect_once_more" , (data) =>{
+        //     window.location.assign("/quiz/<%=room%>");
+        // })
+
+            socket.on("gotoquiz" , () => {
+                window.location.assign("/quiz/<%=room%>");
+            })
+
+        
+    
+    </script>
+    </body>
+    </center>
+
+        
+        
+   
+
+   
+</html>

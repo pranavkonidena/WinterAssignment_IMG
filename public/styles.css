@@ -1,0 +1,137 @@
+/* Login Button */
+
+.login-button {
+    border-radius: 0%;
+    /* position: absolute;
+    right: 35px;
+    top : 7px; */
+    color: #FEFFDE;
+    border-style: none;
+    background-color: #212529;
+    
+}
+
+.signup-button {
+    border-radius: 0%;
+    /* position: absolute;
+    right: 90px;
+    top : 7px; */
+    color: #FEFFDE;
+}
+
+.login-button:hover{
+    color: white;
+}
+.signup-button:hover{
+    color: white;
+}
+
+
+
+.tagline {
+    padding-top: 7rem;
+    text-align: center;
+    font-size: 7rem;
+    font-family: "Dancing Script";
+    font-weight : 400;
+    color: black;
+    
+}
+
+body {
+    color: black;
+    background-color: #FEFFDE;
+}   
+
+/* Navbar */
+.navbar-brand{
+    color: white;
+}
+
+.navbar-brand:hover{
+    color:white;
+}
+
+.nav-item {
+    color:white;
+    
+}
+
+.nav-link {  
+    color:white;
+    color: #FEFFDE;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+.dropdown {
+    margin-right: 0px;
+    color: #FEFFDE;
+    padding: auto 0px;
+}
+
+.dropdown:hover{
+    color: white;
+}
+
+.navbar-toggler {
+    background-color: #FEFFDE;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+
+/* Image */
+
+.greeting {
+    color:black;
+    font-family: 'Dancing Script';
+    font-weight: 400;
+    font-size: 5rem;
+    padding-bottom: 3rem;
+}
+
+
+
+.text-l-sp-hp{
+    color: black;
+    position: relative;
+    top: 20rem;
+    font-family: "Montserrat";
+    font-size: 2rem;
+
+}
+
+#fn1{
+    display: none;
+}
+
+#fn2{
+    display: none;
+}
+
+#fn3{
+    display: none;
+}
+
+.logout-button {
+    background-color: #212529;
+}
+
+.create-button {
+    position: relative;
+    display: inline-block;
+    right: 5rem;
+
+}
+
+.join-button {
+    position: relative;
+    display: inline-block;
+    bottom: 3rem;
+    left: 6rem;
+}

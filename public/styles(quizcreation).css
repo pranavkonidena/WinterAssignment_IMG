@@ -1,0 +1,172 @@
+.headers {
+    text-align: center;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 3rem;
+    padding-bottom: 0rem;
+    padding-top: 4rem;
+}
+
+body {
+    background-color: #FEFFDE;
+    color: black;
+}
+
+.question-text {
+    
+    
+    font-family: "Montserrat";
+    font-weight: 400;
+}
+
+
+
+.roomid {
+    padding-top: 5rem;
+    padding-bottom : 5rem;
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Ubuntu";
+}
+
+.number-qns {
+    padding-left: 24.1rem;
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+}
+
+.t {
+    padding-bottom: 2rem;
+}
+
+.btn {
+    position: relative;
+    left : 860px;
+    top : 3rem;
+}
+
+.ph2 {
+    position: relative;
+    left : 130px;
+}
+
+.ph3 {
+    position: relative;
+    left : 8px;
+}
+
+.login-button {
+    border-radius: 0%;
+    /* position: absolute;
+    right: 35px;
+    top : 7px; */
+    color: #FEFFDE;
+    border-style: none;
+    background-color: #FEFFDE;
+}
+
+.question-text-scq {
+    position: relative;
+    left : 10rem;
+    padding-bottom: 3rem;
+}
+
+.space-frwriting-qnscq {
+    position: relative;
+    left : 15rem;
+    width: 50%;
+}
+
+.option-text-scq{
+    padding-top: 1rem;
+    position:relative;
+    left : 10rem;
+}
+
+.space-frwriting-ansscq {
+    position: relative;
+    left : 15rem;
+    width: 20%;
+}
+
+.answer-text-scq {
+    padding-top : 3rem;
+    position: relative;
+    left : 10rem;
+}
+.x {
+    position: relative;
+    left : 18rem;
+}
+
+/* True False */
+
+.question-text-tf {
+    position: relative;
+    left : 10rem;
+    padding-bottom: 3rem;
+}
+.space-frwriting-qntf {
+    position: relative;
+    left : 15rem;
+    width: 50%;
+}
+
+
+
+.option-text-tf{
+    padding-top: 1rem;
+    position:relative;
+    left : 10rem;
+}
+
+.rb-1 {
+    position: relative;
+    left : 11.5rem;
+}
+.rb-2 {
+    position: relative;
+    left : 11.2rem;
+}
+
+
+
+
+
+
+
+
+.question-text-num {
+    position: relative;
+    left : 10rem;
+    padding-bottom: 3rem;
+}
+
+
+.space-frwriting-qnnum {
+    position: relative;
+    left : 15rem;
+    width: 50%;
+}
+
+.space-frwriting-ansnum {
+    position: relative;
+    left : 14rem;
+    width: 20%;
+}
+
+.answer-text-num {
+    padding-top : 2rem;
+    position: relative;
+    left : 10rem;
+}
+
+.a {
+    padding-top: 5rem;
+}
+
+.c {
+    position: relative;
+    left : 65rem;
+}
